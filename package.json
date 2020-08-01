@@ -3,5 +3,27 @@
   "version": "0.0.0",
   "main": "index.js",
   "author": "aknorw <antoine@wronka.me>",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "scripts": {
+    "pretty": "prettier --config .prettierrc --check 'app/**/*.{js,ts}'",
+    "lint": "eslint --ext .js,.ts app",
+    "build": "tsc -p .",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "yarn pretty",
+      "yarn lint"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  }
 }
