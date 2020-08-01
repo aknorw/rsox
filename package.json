@@ -2,7 +2,7 @@
   "name": "rsox",
   "version": "0.0.0",
   "bin": {
-    "convertAndTag": "./bin/convertAndTag.js"
+    "convert": "./bin/cli.js"
   },
   "author": "aknorw <antoine@wronka.me>",
   "license": "UNLICENSED",
