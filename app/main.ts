@@ -2,8 +2,6 @@ import { getReleaseData } from './discogs'
 import { processFiles } from './process'
 
 export async function main({ folder, releaseId, maxPrecision, maxSampleRate }: Record<string, string>) {
-  // const { folder, releaseId, maxPrecision, maxSampleRate } = program
-
   if (!folder) throw new Error('Folder must be defined!')
 
   if (!releaseId) throw new Error('Release id must be defined!')
