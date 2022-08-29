@@ -9,7 +9,16 @@ import NodeID3 from 'node-id3'
 
 import { GetReleaseDataType } from './discogs'
 
-const AUDIO_EXTENSIONS = ['aiff', 'alac', 'flac', 'wav']
+const AUDIO_EXTENSIONS = ['aif', 'aiff', 'alac', 'flac', 'wav']
+
+/**
+ * TODO:
+ * - Fix apostrophes
+ * - duplicate track names (i.e. Untitled)
+ * - fix compilations (different names for tracks)
+ * - fix hierarchy when name contains a slash
+ * - fix tracks that have subtrack
+ */
 
 export async function processFiles(
   folder: string,
@@ -29,7 +38,7 @@ export async function processFiles(
   }
 
   // Create new folder
-  const folderName = `${releaseData.artist} - ${releaseData.album} (${releaseData.year})`
+  const folderName = `${releaseData.artist} - ${releaseData.album} (${releaseData.year})`.replace("'", '')
   await mkdirp(`./${folderName}`)
 
   const availableTracks = new Set(Array.from(releaseData.tracklist))
@@ -55,7 +64,7 @@ async function getMetadata(file: string) {
 
   const [precision] = metadata.find((d) => d.includes('Precision'))!.match(/[0-9]{2}/)!
 
-  const [samplerate] = metadata.find((d) => d.includes('Sample Rate'))!.match(/[0-9]{5}/)!
+  const [samplerate] = metadata.find((d) => d.includes('Sample Rate'))!.match(/[0-9]+/)!
 
   return {
     precision: Number(precision),

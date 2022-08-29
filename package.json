@@ -9,8 +9,10 @@
   "scripts": {
     "pretty": "prettier --config .prettierrc --check 'app/**/*.{js,ts}'",
     "lint": "eslint --ext .js,.ts app",
+    "dev": "ts-node ./bin/cli",
     "build": "tsc -p .",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "ts-node ./test"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -38,6 +40,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "ts-node": "^9.0.0",
     "typescript": "^3.9.7"
   }
 }

@@ -5,7 +5,7 @@ type DiscogsResponse = {
   artists: ReadonlyArray<{
     name: string
   }>
-  styles: ReadonlyArray<string>
+  styles?: ReadonlyArray<string>
   title: string
   tracklist: ReadonlyArray<{
     position: string | number
@@ -26,7 +26,7 @@ export type GetReleaseDataType = {
 export async function getReleaseData(releaseId: number): Promise<GetReleaseDataType> {
   const client = new Discojs()
 
-  const { artists, styles, title, tracklist, year }: DiscogsResponse = await client.getRelease(releaseId)
+  const { artists, styles = [], title, tracklist, year }: DiscogsResponse = await client.getRelease(releaseId)
 
   const artist = artists.map(({ name }) => name.replace(/\([0-9]*\)/g, '').trim()).join(', ')
   const album = title.trim()
